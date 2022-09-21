@@ -2,6 +2,8 @@ clc
 clear all
 close all
 
+format long
+
 set(groot,'DefaultAxesFontSize',14)
 set(groot,'DefaultLineLineWidth',1.5)
 
