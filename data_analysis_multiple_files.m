@@ -5,6 +5,15 @@ close all
 set(groot,'DefaultAxesFontSize',14)
 set(groot,'DefaultLineLineWidth',1.5)
 
+MyFolderInfo = dir('usable Data');
+M(1:end) = readmatrix("usable Data/" + MyFolderInfo(1:end).name, "NumHeaderLines", 7, "Range", "A:I");
+
+
+
+
+
+
+
 %% data read
 
 T = readtable("usable Data/05-40-4.csv");
