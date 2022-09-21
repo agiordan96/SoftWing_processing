@@ -9,6 +9,8 @@ set(groot,'DefaultLineLineWidth',1.5)
 
 T = readtable("usable Data/05-40-4.csv");
 
+
+
 status = table2array(T(:, 1));
 RDT_seq = table2array(T(:, 2));
 FT_seq = table2array(T(:, 3));
