@@ -21,20 +21,7 @@ M_corrected(:, 1 : size(M, 2)-7, 1 : size(M, 3) - 1) = M(:, 8 : end, 1 : 9); %re
 
 %% data read
 
-T = readtable("usable Data/05-40-4.csv");
 
-
-
-status = table2array(T(:, 1));
-RDT_seq = table2array(T(:, 2));
-FT_seq = table2array(T(:, 3));
-Fx = table2array(T(:, 4));
-Fy = table2array(T(:, 5));
-Fz = table2array(T(:, 6));
-Tx = table2array(T(:, 7));
-Ty = table2array(T(:, 8));
-Tz = table2array(T(:, 9));
-rec_time = table2array(T(:, 10));
 
 %% data processing
 
