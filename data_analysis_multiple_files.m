@@ -16,11 +16,12 @@ avg_T = zeros(3, length(MyFolderInfo));
 
 % for k = 1:length(MyFolderInfo)
 for k = 1:40
-force_table = readtable("usable Data/" + MyFolderInfo(k).name, 'Delimiter', ', ', "Range", "D:F");
-torque_table = readtable("usable Data/" + MyFolderInfo(k).name, 'Delimiter', ', ', "Range", "G:I");
 
-avg_F(:, k) = mean(force_table{:, :}, 1);
-avg_T(:, k) = mean(torque_table{:, :}, 1);
+    force_table = readtable("usable Data/" + MyFolderInfo(k).name, 'Delimiter', ', ', "Range", "D:F");
+    torque_table = readtable("usable Data/" + MyFolderInfo(k).name, 'Delimiter', ', ', "Range", "G:I");
+
+    avg_F(:, k) = mean(force_table{:, :}, 1);
+    avg_T(:, k) = mean(torque_table{:, :}, 1);
 
 end
 
