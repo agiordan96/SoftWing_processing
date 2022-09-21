@@ -25,10 +25,6 @@ for k = 1:40
 
 end
 
-%% data correction
-
-M_corrected(:, 1 : size(M, 2)-7, 1 : size(M, 3) - 1) = M(:, 8 : end, 1 : 9); % removed header and last column (time, NaN)
-
 %% data processing
 
 avg_F = mean(M_corrected(1:end, :, 4:6), 2); % average force vector for all of wing's config.
