@@ -14,16 +14,12 @@ end
 
 %% data correction
 
-M_corrected(:, 1 : size(M, 2)-7, 1 : size(M, 3) - 1) = M(:, 8 : end, 1 : 9); %removed header and last column
+M_corrected(:, 1 : size(M, 2)-7, 1 : size(M, 3) - 1) = M(:, 8 : end, 1 : 9); % removed header and last column (time, NaN)
 
 %% data processing
 
-avg_Fx = mean(Fx);
-avg_Fy = mean(Fy);
-avg_Fz = mean(Fz);
-avg_Tx = mean(Tx);
-avg_Ty = mean(Ty);
-avg_Tz = mean(Tz);
+avg_F = mean(M_corrected(:, :, 4:6), 2); % average force vector for all of wing's config.
+avg_T = mean(M_corrected(:, :, 7:9), 2); % average torque vector for all of wing's config. 
 
 %% data visualization
 
@@ -33,7 +29,6 @@ grid on
 hold on
 
 plot(1:length(Fx), Fx, 'b');
-
 
 plot(1:length(Fx), mean(Fx), '-r');
 
