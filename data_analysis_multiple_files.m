@@ -6,7 +6,12 @@ set(groot,'DefaultAxesFontSize',14)
 set(groot,'DefaultLineLineWidth',1.5)
 
 MyFolderInfo = dir('usable Data');
-M(1:end) = readmatrix("usable Data/" + MyFolderInfo(1:end).name, "NumHeaderLines", 7, "Range", "A:I");
+for j = 1:length(MyFolderInfo)
+    M(j, :, :) = readmatrix("usable Data/" + MyFolderInfo(1).name, "NumHeaderLines", 7, "Range", "A:I");
+end
+
+%%
+M_corrected(:, 1 : size(M, 2)-7, 1 : size(M, 3) - 1) = M(:, 8 : end, 1 : 9); %removed header and last column
 
 
 
