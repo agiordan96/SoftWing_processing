@@ -17,7 +17,7 @@ avg_T = zeros(length(MyFolderInfo), 3);
 std_F = zeros(length(MyFolderInfo), 3);
 std_T = zeros(length(MyFolderInfo), 3);
 
-for k = 1:length(MyFolderInfo) % k = 1:40  
+for k = 1:length(MyFolderInfo) 
 
     if MyFolderInfo(k).name == '.' 
         continue
@@ -37,11 +37,6 @@ for k = 1:length(MyFolderInfo) % k = 1:40
     std_T(k, :) = std(torque_table{1:end, :});  % standard deviation for each torque component of every wing config.
 
 end
-
-%% data processing
-
-% avg_F = mean(M_corrected(1:end, :, 4:6), 2); 
-% avg_T = mean(M_corrected(:, :, 7:9), 2);  
 
 %% data visualization
 %
