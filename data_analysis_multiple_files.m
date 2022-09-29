@@ -38,6 +38,18 @@ for k = 1:length(MyFolderInfo)
 
 end
 
+%% data processing
+
+L = 0.5; 
+
+% d(x, y, z) = (X_t; Y_t; Z_t) vector defining distance between force sensing
+% point and transposition point
+
+dx = 1;
+dy = 0;
+dz = L / 2;
+
+
 %% data visualization
 %
 % figure
