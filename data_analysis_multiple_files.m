@@ -38,22 +38,32 @@ for k = 1:length(MyFolderInfo)
     force_table = readtable("usable Data/" + MyFolderInfo(k).name, 'Delimiter', ', ', "Range", "D:F");
     torque_table = readtable("usable Data/" + MyFolderInfo(k).name, 'Delimiter', ', ', "Range", "G:I");   
 
-    avg_F(k, 1:3) = mean(force_table{1:end, :});  % average force vector for all of wing's config.
-    avg_T(k, 1:3) = mean(torque_table{1:end, :}); % average torque vector for all of wing's config.
+    force.avg(k, :) = mean(force_table{1:end, :});  % average force vector for all of wing's config.
+    torque.avg(k, 1:3) = mean(torque_table{1:end, :}); % average torque vector for all of wing's config.
 
-    std_F(k, :) = std(force_table{1:end, :});   % standard on for each force component of every wing config.
-    std_T(k, :) = std(torque_table{1:end, :});  % standard deviation for each torque component of every wing config.
+    force.std(k, :) = std(force_table{1:end, :});   % standard on for each force component of every wing config.
+    torque.std(k, :) = std(torque_table{1:end, :});  % standard deviation for each torque component of every wing config.
 
-    if length(MyFolderInfo(k).name) == 11
+    if length(MyFolderInfo(k).name) == 11 || ength(MyFolderInfo(k).name) == 12
 
-        avg_F(k, 4) = str2double(MyFolderInfo(k).name(1:2));
-        avg_T(k, 4) = str2double(MyFolderInfo(k).name(1:2));
+        force.aoa(k) = str2double(MyFolderInfo(k).name(1:2));
+        force.vel(k) = str2double(MyFolderInfo(k).name(4:5));
+        force.inflation(k) = str2double(MyFolderInfo(k).name(7));
 
-        avg_F(k, 5) = str2double(MyFolderInfo(k).name(1:2));
-        avg_T(k, 5) = str2double(MyFolderInfo(k).name(1:2));
+        torque.aoa(k) = str2double(MyFolderInfo(k).name(1:2));
+        torque.vel(k) = str2double(MyFolderInfo(k).name(4:5));
+        torque.inflation(k) = str2double(MyFolderInfo(k).name(7));
 
-        avg_F(k, 6) = str2double(MyFolderInfo(k).name(1:2));
-        avg_T(k, 6) = str2double(MyFolderInfo(k).name(1:2));
+    elseif length(MyFolderInfo(k).name) == 12
+
+        force.aoa(k) = str2double(MyFolderInfo(k).name(2:3));
+        force.vel(k) = str2double(MyFolderInfo(k).name(5:6));
+        force.inflation(k) = str2double(MyFolderInfo(k).name(8));
+
+        torque.aoa(k) = str2double(MyFolderInfo(k).name(2:3));
+        torque.vel(k) = str2double(MyFolderInfo(k).name(5:6));
+        torque.inflation(k) = str2double(MyFolderInfo(k).name(8));
+
     end
 
 end
