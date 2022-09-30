@@ -44,7 +44,7 @@ for k = 1:length(MyFolderInfo)
     force.std(k, :) = std(force_table{1:end, :});   % standard on for each force component of every wing config.
     torque.std(k, :) = std(torque_table{1:end, :});  % standard deviation for each torque component of every wing config.
 
-    if length(MyFolderInfo(k).name) == 11 || ength(MyFolderInfo(k).name) == 12
+    if length(MyFolderInfo(k).name) == 11 || length(MyFolderInfo(k).name) == 12
 
         force.aoa(k) = str2double(MyFolderInfo(k).name(1:2));
         force.vel(k) = str2double(MyFolderInfo(k).name(4:5));
@@ -96,7 +96,7 @@ dz = z_t - z_s;
 d = [dx; dy; dz];
 
 tor_transposed = zeros(length(MyFolderInfo), 3);
-tor_transposed(1:end, 1:3) = avg_T(1:end, 1:3) + avg_F(1:end, 1:3) * d;
+tor_transposed(1:end, 1:3) = torque.avg(1:end, 1:3) + force.avg(1:end, 1:3) * d;
 
 %flow_speed = string_flow_speed(MyFolderInfo, length(MyFolderInfo));
 
