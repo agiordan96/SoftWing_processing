@@ -40,7 +40,7 @@ end
 
 %% data processing
 
-L = 0.5; 
+L = 1; 
 
 % given a reference frame, Sf(x_s, y_s, z_s) represents the force sensing point,
 % whereas St(x_t, y_t, z_t) represents the torque sensing point.
@@ -51,14 +51,23 @@ L = 0.5;
 % d(x, y, z) = (dx; dy; dz) vector defining distance between force and moment sensing
 % point and transposition point
 
-dx = 1;
-dy = 0;
-dz = L / 2;
+x_s = 1;
+y_s = 0;
+z_s = L / 2;
+
+x_t = 0;
+y_t = 0;
+z_t = 0;
+
+dx = x_t - x_s;
+dy = y_t - y_s;
+dz = z_t - z_s;
 
 d = [dx; dy; dz];
 
 tor_transposed = zeros(length(MyFolderInfo), 3);
 tor_transposed(1:end, 1:3) = avg_T(1:end, 1:3) + avg_F(1:end, 1:3) * d;
+
 
 
 %% data visualization
