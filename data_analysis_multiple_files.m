@@ -98,10 +98,6 @@ d = [dx; dy; dz];
 tor_transposed = zeros(length(MyFolderInfo), 3);
 tor_transposed(1:end, 1:3) = torque.avg(1:end, 1:3) + force.avg(1:end, 1:3) * d;
 
-%flow_speed = string_flow_speed(MyFolderInfo, length(MyFolderInfo));
-
-
-
 %% data visualization
 %
 % figure
