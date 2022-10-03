@@ -15,15 +15,15 @@ force = struct; torque = struct;    % definition of force and torque related qua
 
 force.avg = zeros(length(MyFolderInfo), 3);
 force.std = zeros(length(MyFolderInfo), 3);
-force.aoa = zeros(length(MyFolderInfo));
-force.vel = zeros(length(MyFolderInfo));
-force.inflation = zeros(length(MyFolderInfo));
+force.aoa = zeros(length(MyFolderInfo), 1);
+force.vel = zeros(length(MyFolderInfo), 1);
+force.inflation = zeros(length(MyFolderInfo), 1);
 
 torque.avg = zeros(length(MyFolderInfo), 3);
 torque.std = zeros(length(MyFolderInfo), 3);
-torque.aoa = zeros(length(MyFolderInfo));
-torque.vel = zeros(length(MyFolderInfo));
-torque.inflation = zeros(length(MyFolderInfo));
+torque.aoa = zeros(length(MyFolderInfo), 1);
+torque.vel = zeros(length(MyFolderInfo), 1);
+torque.inflation = zeros(length(MyFolderInfo), 1);
 
 for k = 1:length(MyFolderInfo) 
 
@@ -82,6 +82,10 @@ L = 1;
 % points and transposition point (one vector because force and momenta sensing
 % points coincide)
 
+% CL = L / (dynamic pressure * wing_surface)
+% CD = D / (dynamic pressure * wing_surface)
+
+
 x_s = 1;
 y_s = 0;
 z_s = L / 2;
@@ -95,6 +99,8 @@ dy = y_t - y_s;
 dz = z_t - z_s;
 
 d = [dx; dy; dz];
+
+S = 1; % m^2, wing's surface
 
 tor_transposed = zeros(length(MyFolderInfo), 3);
 tor_transposed(1:end, 1:3) = torque.avg(1:end, 1:3) + force.avg(1:end, 1:3) * d;
@@ -110,10 +116,11 @@ sel_speed = [10, 15, 20, 30, 40, 50];
 sel_inflation = [1, 2, 3, 4];
 
 for j = 1:length(sel_speed)
+    dyn_pressure = 0.5 * rho * sel_speed ^ 2; % calculation of dynamic pressure
     for m = 1:length(sel_inflation)
         for k = 1:length(MyFolderInfo.name)
             if force.vel == sel.speed(k) && force.inflation == sel_inflation()
-                plot(, Fx, 'b');
+                plot(force, Fx, 'b');
             end
         end
     end
