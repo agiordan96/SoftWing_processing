@@ -106,14 +106,19 @@ figure
 grid on
 hold on
 
-for k = 1:length(MyFolderInfo.name)
-    if force.vel == 10 & force.inflation == 1
-       plot(1:length(Fx), Fx, 'b');
-       plot(1:length(Fx), mean(Fx), '-r');
-    end
-    
+sel_speed = [10, 15, 20, 30, 40, 50];
+sel_inflation = [1, 2, 3, 4];
 
+for j = 1:length(sel_speed)
+    for m = 1:length(sel_inflation)
+        for k = 1:length(MyFolderInfo.name)
+            if force.vel == sel.speed(k) && force.inflation == sel_inflation()
+                plot(, Fx, 'b');
+            end
+        end
+    end
 end
+
 
 
 
