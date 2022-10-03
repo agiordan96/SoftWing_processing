@@ -79,7 +79,8 @@ L = 1;
 % point of forces and momenta
 
 % d(x, y, z) = (dx; dy; dz) vector defining distance between force and moment sensing
-% point and transposition point
+% points and transposition point (one vector because force and momenta sensing
+% points coincide)
 
 x_s = 1;
 y_s = 0;
@@ -108,3 +109,25 @@ tor_transposed(1:end, 1:3) = torque.avg(1:end, 1:3) + force.avg(1:end, 1:3) * d;
 % plot(1:length(Fx), Fx, 'b');
 % 
 % plot(1:length(Fx), mean(Fx), '-r');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
