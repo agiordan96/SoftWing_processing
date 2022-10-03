@@ -101,6 +101,7 @@ dz = z_t - z_s;
 d = [dx; dy; dz];
 
 S = 1; % m^2, wing's surface
+rho = 1000; % kg / m^3 density of water
 
 tor_transposed = zeros(length(MyFolderInfo), 3);
 tor_transposed(1:end, 1:3) = torque.avg(1:end, 1:3) + force.avg(1:end, 1:3) * d;
