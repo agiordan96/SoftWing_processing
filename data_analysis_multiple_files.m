@@ -100,15 +100,22 @@ tor_transposed = zeros(length(MyFolderInfo), 3);
 tor_transposed(1:end, 1:3) = torque.avg(1:end, 1:3) + force.avg(1:end, 1:3) * d;
 
 %% data visualization
-%
-% figure
-% 
-% grid on
-% hold on
-% 
-% plot(1:length(Fx), Fx, 'b');
-% 
-% plot(1:length(Fx), mean(Fx), '-r');
+
+figure
+
+grid on
+hold on
+
+for k = 1:length(MyFolderInfo.name)
+    if force.vel == 10 & force.inflation == 1
+       plot(1:length(Fx), Fx, 'b');
+       plot(1:length(Fx), mean(Fx), '-r');
+    end
+    
+
+end
+
+
 
 
 
