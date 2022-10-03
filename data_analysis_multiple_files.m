@@ -47,7 +47,7 @@ for k = 1:length(MyFolderInfo)
     if length(MyFolderInfo(k).name) == 11 || length(MyFolderInfo(k).name) == 12
 
         force.aoa(k) = str2double(MyFolderInfo(k).name(1:2));
-        force.vel(k) = str2double(MyFolderInfo(k).name(4:5));
+        force.vel(k, 1) = str2double(MyFolderInfo(k).name(4:5));
         force.inflation(k) = str2double(MyFolderInfo(k).name(7));
 
         torque.aoa(k) = str2double(MyFolderInfo(k).name(1:2));
@@ -57,7 +57,7 @@ for k = 1:length(MyFolderInfo)
     elseif length(MyFolderInfo(k).name) == 12
 
         force.aoa(k) = str2double(MyFolderInfo(k).name(2:3));
-        force.vel(k) = str2double(MyFolderInfo(k).name(5:6));
+        force.vel(k, 1) = str2double(MyFolderInfo(k).name(5:6));
         force.inflation(k) = str2double(MyFolderInfo(k).name(8));
 
         torque.aoa(k) = str2double(MyFolderInfo(k).name(2:3));
