@@ -115,18 +115,19 @@ for j = 1:length(sel_speed)
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
 
     for m = 1:length(sel_inflation)
-        figure("Name", 'Flow speed')
+        figure
+        title(['Flow speed: ', num2str(sel_speed(j)), ' inflation: ', num2str(sel_inflation(j))])
         hold on
+        xlabel('AoA')
+        ylabel('CL/CD')
 
         for k = 1:length(MyFolderInfo)
 
             if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(m))
                 scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'r', 'filled');
-                xlabel('AoA')
-                ylabel('CL/CD')
             end
         end
-        
+
         hold off
     end
 end
