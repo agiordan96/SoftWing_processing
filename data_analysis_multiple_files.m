@@ -44,7 +44,7 @@ for k = 1:length(MyFolderInfo)
     force.std(k, :) = std(force_table{1:end, :});   % standard on for each force component of every wing config.
     torque.std(k, :) = std(torque_table{1:end, :});  % standard deviation for each torque component of every wing config.
 
-    if length(MyFolderInfo(k).name) == 11 || length(MyFolderInfo(k).name) == 12
+    if length(MyFolderInfo(k).name) == 11 || length(MyFolderInfo(k).name) > 12
 
         force.aoa(k) = str2double(MyFolderInfo(k).name(1:2));
         force.vel(k, 1) = str2double(MyFolderInfo(k).name(4:5));
@@ -108,22 +108,22 @@ tor_transposed(1:end, 1:3) = torque.avg(1:end, 1:3) + force.avg(1:end, 1:3) * d;
 
 %% data visualization
 
-figure
-
-grid on
-hold on
-
 sel_speed = [10, 15, 20, 30, 40, 50];
-sel_inflation = [1, 2, 3, 4];
+sel_inflation = [0, 1, 2, 3, 4];
 
 for j = 1:length(sel_speed)
-    dyn_pressure = 0.5 * rho * sel_speed ^ 2; % calculation of dynamic pressure
+    dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
     for m = 1:length(sel_inflation)
-        for k = 1:length(MyFolderInfo.name)
-            if force.vel == sel.speed(k) && force.inflation == sel_inflation()
-                plot(force, Fx, 'b');
+        figure("Name", 'Flow speed')
+        hold on
+        for k = 1:length(MyFolderInfo)
+            if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(m))
+                scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'r', 'filled');
+                xlabel('AoA')
+                ylabel('CL/CD')
             end
         end
+        hold off
     end
 end
 
