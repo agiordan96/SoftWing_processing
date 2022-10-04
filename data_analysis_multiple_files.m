@@ -116,13 +116,15 @@ for j = 1:length(sel_speed)
 
     for m = 1:length(sel_inflation)
         figure
-        title(['Flow speed: ', num2str(sel_speed(j)), ' inflation: ', num2str(sel_inflation(j))])
+        title(['Flow Speed: ', num2str(sel_speed(j)), ';   Inflation: ', num2str(sel_inflation(m)), ';'])
         hold on
+        grid on
         xlabel('AoA')
         ylabel('CL/CD')
+        xlim([-10 35])
+        ylim([-10 10])
 
         for k = 1:length(MyFolderInfo)
-
             if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(m))
                 scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'r', 'filled');
             end
