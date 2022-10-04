@@ -168,7 +168,9 @@ for j = 1:length(sel_speed)
              scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'k', 'filled');
          end
     end
-
+    
+    legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
+     'Location','northwest','Orientation','horizontal')
     hold off
 
 end
