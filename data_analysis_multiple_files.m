@@ -111,28 +111,68 @@ tor_transposed(1:end, 1:3) = torque.avg(1:end, 1:3) + force.avg(1:end, 1:3) * d;
 sel_speed = [10, 15, 20, 30, 40, 50];
 sel_inflation = [0, 1, 2, 3, 4];
 
+% presenting one plot per selected speed and selected inflation, varying
+% angle of attack
+
+% for j = 1:length(sel_speed)
+%     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
+% 
+%     for m = 1:length(sel_inflation)
+%         figure
+%         title(['Flow Speed: ', num2str(sel_speed(j)), ';   Inflation: ', num2str(sel_inflation(m)), ';'])
+%         hold on
+%         grid on
+%         xlabel('AoA')
+%         ylabel('CL/CD')
+%         xlim([-10 35])
+%         ylim([-10 10])
+% 
+%         for k = 1:length(MyFolderInfo)
+%             if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(m))
+%                 scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'r', 'filled');
+%             end
+%         end
+% 
+%         hold off
+%     end
+% end
+% 
+% close all
+
+% presenting one plot per selected speed and all inflations, varying
+% angle of attack
+
 for j = 1:length(sel_speed)
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
 
-    for m = 1:length(sel_inflation)
-        figure
-        title(['Flow Speed: ', num2str(sel_speed(j)), ';   Inflation: ', num2str(sel_inflation(m)), ';'])
-        hold on
-        grid on
-        xlabel('AoA')
-        ylabel('CL/CD')
-        xlim([-10 35])
-        ylim([-10 10])
+    figure
+    title(['Flow Speed: ', num2str(sel_speed(j)), ';   Inflation: ', num2str(sel_inflation(m)), ';'])
+    hold on
+    grid on
+    xlabel('AoA')
+    ylabel('CL / CD')
+    xlim([-10 35])
+    ylim([-10 10])
 
-        for k = 1:length(MyFolderInfo)
-            if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(m))
-                scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'r', 'filled');
-            end
-        end
 
-        hold off
+    for k = 1:length(MyFolderInfo)
+         if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(1))
+            scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'r', 'filled');
+         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(2))
+             scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'o', 'filled');
+         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(3))
+             scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'y', 'filled');
+         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(4))
+             scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'b', 'filled');
+         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(5))
+             scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'k', 'filled');
+         end
     end
+
+    hold off
+
 end
+
 
 
 
