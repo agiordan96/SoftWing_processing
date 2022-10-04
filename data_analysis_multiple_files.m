@@ -137,7 +137,7 @@ sel_inflation = [0, 1, 2, 3, 4];
 %     end
 % end
 % 
-% close all
+close all
 
 % presenting one plot per selected speed and all inflations, varying
 % angle of attack
@@ -146,7 +146,7 @@ for j = 1:length(sel_speed)
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
 
     figure
-    title(['Flow Speed: ', num2str(sel_speed(j)), ';   Inflation: ', num2str(sel_inflation(m)), ';'])
+    title(['Flow Speed: ', num2str(sel_speed(j))])
     hold on
     grid on
     xlabel('AoA')
