@@ -250,13 +250,19 @@ for j = 1:length(sel_speed)
             end
             k1 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'o', 'filled');
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*o');
+             if exist('k2','var') == 1
+                x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
+                y_vec = [exp_value.f_avg(k1, 1), exp_value.f_avg(k, 1)];
+                plot(x_vec, y_vec, '--r')
+            end
+            k2 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'y', 'filled');
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*y');
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'b', 'filled');
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*b');
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'k', 'filled');
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*k');
          end
     end
     
