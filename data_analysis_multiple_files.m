@@ -68,6 +68,10 @@ for k = 1:length(MyFolderInfo)
 
 end
 
+T = struct2table(force); % convert the struct array to a table
+sortedT = sortrows(T, 'aoa'); % sort the table by 'DOB'
+force = table2struct(sortedT); % change it back to struct array if necessary
+
 %% data processing
 
 L = 1;
@@ -225,8 +229,10 @@ sel_inflation = [0, 1, 2, 3, 4];
 % CD: presenting one plot per selected speed and all inflations, varying
 % angle of attack
 
+
 for j = 1:length(sel_speed)
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
+    clear k1
 
     figure
     title(['CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
@@ -238,9 +244,19 @@ for j = 1:length(sel_speed)
     ylim([-10 10])
 
     for k = 1:length(MyFolderInfo)
+        if k == 87 
+            continue
+        end
          if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(1))
-%             scatter(force.aoa(k), force.avg(k, 1), 'r', 'filled');
-            plot(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), '-or');
+            if exist('k1','var') == 1
+                scatter(force.aoa(k), force.avg(k, 1), 'r', 'filled');
+                x_vec = [force.aoa(k1), force.aoa(k)];
+                y_vec = [force.avg(k1, 1), force.avg(k, 1)];
+                plot(x_vec, y_vec, '-or')
+            else
+                scatter(force.aoa(k), force.avg(k, 1), 'r', 'filled');
+            end
+            k1 = k;
          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(2))
              scatter(force.aoa(k), force.avg(k, 1), 'o', 'filled');
          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(3))
