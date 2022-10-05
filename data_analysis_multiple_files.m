@@ -148,78 +148,78 @@ sel_inflation = [0, 1, 2, 3, 4];
 % CD / CL: presenting one plot per selected speed and all inflations, varying
 % angle of attack
 
-for j = 1:length(sel_speed)
-    dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
-
-    figure
-    title(['CD/CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
-    hold on
-    grid on
-    xlabel('AoA')
-    ylabel('CL / CD')
-    xlim([-10 35])
-    ylim([-10 10])
-
-
-    for k = 1:length(MyFolderInfo)
-         if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(1))
-            scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'r', 'filled');
-%             plot(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), '-r');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(2))
-             scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'o', 'filled');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(3))
-             scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'y', 'filled');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(4))
-             scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'b', 'filled');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(5))
-             scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'k', 'filled');
-         end
-    end
-    
-    legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
-     'Location','northwest','Orientation','horizontal')
-    hold off
-
-end
+% for j = 1:length(sel_speed)
+%     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
+% 
+%     figure
+%     title(['CD/CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
+%     hold on
+%     grid on
+%     xlabel('AoA')
+%     ylabel('CL / CD')
+%     xlim([-10 35])
+%     ylim([-10 10])
+% 
+% 
+%     for k = 1:length(MyFolderInfo)
+%          if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(1))
+%             scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'r', 'filled');
+% %             plot(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), '-r');
+%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(2))
+%              scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'o', 'filled');
+%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(3))
+%              scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'y', 'filled');
+%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(4))
+%              scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'b', 'filled');
+%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(5))
+%              scatter(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), 'k', 'filled');
+%          end
+%     end
+%     
+%     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
+%      'Location','northwest','Orientation','horizontal')
+%     hold off
+% 
+% end
 
 
 
 % CL: presenting one plot per selected speed and all inflations, varying
 % angle of attack
 
-for j = 1:length(sel_speed)
-    dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
-
-    figure
-    title(['CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
-    hold on
-    grid on
-    xlabel('AoA')
-    ylabel('CL / CD')
-    xlim([-10 35])
-    ylim([-10 10])
-
-    for k = 1:length(MyFolderInfo)
-         if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(1))
-            scatter(force.aoa(k), force.avg(k, 2), 'r', 'filled');
-%             plot(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), '-r');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(2))
-             scatter(force.aoa(k), force.avg(k, 2), 'o', 'filled');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(3))
-             scatter(force.aoa(k), force.avg(k, 2), 'y', 'filled');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(4))
-             scatter(force.aoa(k), force.avg(k, 2), 'b', 'filled');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(5))
-             scatter(force.aoa(k), force.avg(k, 2), 'k', 'filled');
-         end
-    end
-    
-    legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
-     'Location','northwest','Orientation','horizontal')
-    hold off
-
-end
-
+% for j = 1:length(sel_speed)
+%     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
+% 
+%     figure
+%     title(['CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
+%     hold on
+%     grid on
+%     xlabel('AoA')
+%     ylabel('CL / CD')
+%     xlim([-10 35])
+%     ylim([-10 10])
+% 
+%     for k = 1:length(MyFolderInfo)
+%          if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(1))
+%             scatter(force.aoa(k), force.avg(k, 2), 'r', 'filled');
+% %             plot(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), '-r');
+%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(2))
+%              scatter(force.aoa(k), force.avg(k, 2), 'o', 'filled');
+%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(3))
+%              scatter(force.aoa(k), force.avg(k, 2), 'y', 'filled');
+%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(4))
+%              scatter(force.aoa(k), force.avg(k, 2), 'b', 'filled');
+%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(5))
+%              scatter(force.aoa(k), force.avg(k, 2), 'k', 'filled');
+%          end
+%     end
+%     
+%     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
+%      'Location','northwest','Orientation','horizontal')
+%     hold off
+% 
+% end
+% 
 
 
 % CD: presenting one plot per selected speed and all inflations, varying
@@ -263,41 +263,38 @@ end
 % CM pitching: presenting one plot per selected speed and all inflations, varying
 % angle of attack
 
-for j = 1:length(sel_speed)
-    dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
-
-    figure
-    title(['CM pitch plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
-    hold on
-    grid on
-    xlabel('AoA')
-    ylabel('CL / CD')
-    xlim([-10 35])
-    ylim([-10 10])
-
-    for k = 1:length(MyFolderInfo)
-         if (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(1))
-            scatter(torque.aoa(k), torque.avg(k, 2), 'r', 'filled');
-         elseif (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(2))
-             scatter(torque.aoa(k), torque.avg(k, 2), 'o', 'filled');
-         elseif (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(3))
-             scatter(torque.aoa(k), torque.avg(k, 2), 'y', 'filled');
-         elseif (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(4))
-             scatter(torque.aoa(k), torque.avg(k, 2), 'b', 'filled');
-         elseif (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(5))
-             scatter(torque.aoa(k), torque.avg(k, 2), 'k', 'filled');
-         end
-    end
-    
-    legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
-     'Location','northwest','Orientation','horizontal')
-    hold off
-
-end
-
-
-
-
+% for j = 1:length(sel_speed)
+%     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
+% 
+%     figure
+%     title(['CM pitch plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
+%     hold on
+%     grid on
+%     xlabel('AoA')
+%     ylabel('CL / CD')
+%     xlim([-10 35])
+%     ylim([-10 10])
+% 
+%     for k = 1:length(MyFolderInfo)
+%          if (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(1))
+%             scatter(torque.aoa(k), torque.avg(k, 2), 'r', 'filled');
+%          elseif (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(2))
+%              scatter(torque.aoa(k), torque.avg(k, 2), 'o', 'filled');
+%          elseif (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(3))
+%              scatter(torque.aoa(k), torque.avg(k, 2), 'y', 'filled');
+%          elseif (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(4))
+%              scatter(torque.aoa(k), torque.avg(k, 2), 'b', 'filled');
+%          elseif (torque.vel(k) == sel_speed(j)) && (torque.inflation(k) == sel_inflation(5))
+%              scatter(torque.aoa(k), torque.avg(k, 2), 'k', 'filled');
+%          end
+%     end
+%     
+%     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
+%      'Location','northwest','Orientation','horizontal')
+%     hold off
+% 
+% end
+% 
 
 
 
