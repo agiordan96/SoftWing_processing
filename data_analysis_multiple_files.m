@@ -61,13 +61,10 @@ end
 
 %% data sorting
 
-T = struct2table(force); % convert the struct array to a table
+T = struct2table(exp_value); % convert the struct array to a table
 sortedT = sortrows(T, 'aoa'); % sort the table by 'aoa'
 force = table2struct(sortedT); % convert the table back to the struct array
 
-Z = struct2table(torque); % convert the struct array to a table
-sortedZ = sortrows(Z, 'aoa'); % sort the table by 'aoa'
-torque = table2struct(sortedZ); % convert the table back to the struct array
 
 %% data processing
 
@@ -112,8 +109,6 @@ tor_transposed(1:end, 1:3) = exp_value.t_avg(1:end, 1:3) + exp_value.f_avg(1:end
 close all
 
 % plots against AoA
-
-
 
 sel_speed = [10, 15, 20, 30, 40, 50];
 sel_inflation = [0, 1, 2, 3, 4];
