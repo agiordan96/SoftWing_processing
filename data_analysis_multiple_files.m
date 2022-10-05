@@ -72,6 +72,10 @@ T = struct2table(force); % convert the struct array to a table
 sortedT = sortrows(T, 'aoa'); % sort the table by 'DOB'
 force = table2struct(sortedT); % change it back to struct array if necessary
 
+Z = struct2table(torque); % convert the struct array to a table
+sortedZ = sortrows(Z, 'aoa'); % sort the table by 'DOB'
+torque = table2struct(sortedZ); % change it back to struct array if necessary
+
 %% data processing
 
 L = 1;
