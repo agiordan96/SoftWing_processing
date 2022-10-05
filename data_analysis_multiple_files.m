@@ -258,11 +258,11 @@ for j = 1:length(sel_speed)
             end
             k2 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*y');
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*m');
              if exist('k3','var') == 1
                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k1, 1), exp_value.f_avg(k, 1)];
-                plot(x_vec, y_vec, '--r')
+                plot(x_vec, y_vec, '--m')
             end
             k3 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
@@ -274,11 +274,11 @@ for j = 1:length(sel_speed)
             end
             k4 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*k');
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*g');
              if exist('k5','var') == 1
                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k1, 1), exp_value.f_avg(k, 1)];
-                plot(x_vec, y_vec, '--k')
+                plot(x_vec, y_vec, '--g')
             end
             k5 = k;
          end
