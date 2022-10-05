@@ -69,12 +69,12 @@ for k = 1:length(MyFolderInfo)
 end
 
 T = struct2table(force); % convert the struct array to a table
-sortedT = sortrows(T, 'aoa'); % sort the table by 'DOB'
-force = table2struct(sortedT); % change it back to struct array if necessary
+sortedT = sortrows(T, 'aoa'); % sort the table by 'aoa'
+force = table2struct(sortedT); % convert the table back to the struct array
 
 Z = struct2table(torque); % convert the struct array to a table
-sortedZ = sortrows(Z, 'aoa'); % sort the table by 'DOB'
-torque = table2struct(sortedZ); % change it back to struct array if necessary
+sortedZ = sortrows(Z, 'aoa'); % sort the table by 'aoa'
+torque = table2struct(sortedZ); % cconvert the table back to the struct array
 
 %% data processing
 
