@@ -68,13 +68,15 @@ for k = 1:length(MyFolderInfo)
 
 end
 
+%% data sorting
+
 T = struct2table(force); % convert the struct array to a table
 sortedT = sortrows(T, 'aoa'); % sort the table by 'aoa'
 force = table2struct(sortedT); % convert the table back to the struct array
 
 Z = struct2table(torque); % convert the struct array to a table
 sortedZ = sortrows(Z, 'aoa'); % sort the table by 'aoa'
-torque = table2struct(sortedZ); % cconvert the table back to the struct array
+torque = table2struct(sortedZ); % convert the table back to the struct array
 
 %% data processing
 
