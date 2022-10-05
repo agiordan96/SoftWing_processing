@@ -63,8 +63,7 @@ end
 
 T = struct2table(exp_value); % convert the struct array to a table
 sortedT = sortrows(T, 'aoa'); % sort the table by 'aoa'
-force = table2struct(sortedT); % convert the table back to the struct array
-
+exp_value = table2struct(sortedT); % convert the table back to the struct array
 
 %% data processing
 
