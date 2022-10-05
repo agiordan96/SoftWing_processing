@@ -11,7 +11,6 @@ set(groot,'DefaultLineLineWidth',1.5)
 
 MyFolderInfo = dir('usable Data full');
 
-force = struct; torque = struct;    % definition of force and torque related quantities' containers
 exp_value  = struct;
 
 exp_value.f_avg = zeros(length(MyFolderInfo), 3);
@@ -63,7 +62,7 @@ end
 
 T = struct2table(exp_value); % convert the struct array to a table
 sortedT = sortrows(T, 'aoa'); % sort the table by 'aoa'
-exp_value = table2struct(sortedT); % convert the table back to the struct array
+exp_value = table2struct(sortedT,'ToScalar',true); % convert the table back to the struct array
 
 %% data processing
 
