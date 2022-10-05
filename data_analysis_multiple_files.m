@@ -58,11 +58,15 @@ for k = 1:length(MyFolderInfo)
 
 end
 
+clear exp_table
+
 %% data sorting
 
 T = struct2table(exp_value); % convert the struct array to a table
 sortedT = sortrows(T, 'aoa'); % sort the table by 'aoa'
 exp_value = table2struct(sortedT,'ToScalar',true); % convert the table back to the struct array
+
+clear T sortedT
 
 %% data processing
 
@@ -108,7 +112,7 @@ close all
 
 % plots against AoA
 
-sel_speed = [10, 15, 20, 30, 40, 50];
+sel_speed = [10, 15, 20, 25, 30, 40, 50];
 sel_inflation = [0, 1, 2, 3, 4];
 
 % CD / CL: presenting one plot per selected speed and selected inflation, varying
@@ -230,31 +234,29 @@ for j = 1:length(sel_speed)
     grid on
     xlabel('AoA [deg]')
     ylabel('CL / CD')
-    xlim([-10 35])
+    xlim([-10 40])
     ylim([-10 10])
 
     for k = 1:length(MyFolderInfo)
         if k == 87 
             continue
         end
-         if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(1))
+         if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
+            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*r');
             if exist('k1','var') == 1
-                scatter(force.aoa(k), force.avg(k, 1), 'r', 'filled');
-                x_vec = [force.aoa(k1), force.aoa(k)];
-                y_vec = [force.avg(k1, 1), force.avg(k, 1)];
-                plot(x_vec, y_vec, '-or')
-            else
-                scatter(force.aoa(k), force.avg(k, 1), 'r', 'filled');
+                x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
+                y_vec = [exp_value.f_avg(k1, 1), exp_value.f_avg(k, 1)];
+                plot(x_vec, y_vec, '--r')
             end
             k1 = k;
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(2))
-             scatter(force.aoa(k), force.avg(k, 1), 'o', 'filled');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(3))
-             scatter(force.aoa(k), force.avg(k, 1), 'y', 'filled');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(4))
-             scatter(force.aoa(k), force.avg(k, 1), 'b', 'filled');
-         elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(5))
-             scatter(force.aoa(k), force.avg(k, 1), 'k', 'filled');
+         elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'o', 'filled');
+         elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'y', 'filled');
+         elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'b', 'filled');
+         elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'k', 'filled');
          end
     end
     
