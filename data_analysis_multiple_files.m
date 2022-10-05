@@ -128,7 +128,7 @@ sel_inflation = [0, 1, 2, 3, 4];
 %         title(['Flow Speed: ', num2str(sel_speed(j)), ';   Inflation: ', num2str(sel_inflation(m)), ';'])
 %         hold on
 %         grid on
-%         xlabel('AoA')
+%         xlabel('AoA [deg]')
 %         ylabel('CL/CD')
 %         xlim([-10 35])
 %         ylim([-10 10])
@@ -155,7 +155,7 @@ sel_inflation = [0, 1, 2, 3, 4];
 %     title(['CD/CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
 %     hold on
 %     grid on
-%     xlabel('AoA')
+%     xlabel('AoA [deg]')
 %     ylabel('CL / CD')
 %     xlim([-10 35])
 %     ylim([-10 10])
@@ -194,7 +194,7 @@ sel_inflation = [0, 1, 2, 3, 4];
 %     title(['CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
 %     hold on
 %     grid on
-%     xlabel('AoA')
+%     xlabel('AoA [deg]')
 %     ylabel('CL / CD')
 %     xlim([-10 35])
 %     ylim([-10 10])
@@ -232,15 +232,15 @@ for j = 1:length(sel_speed)
     title(['CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
     hold on
     grid on
-    xlabel('AoA')
+    xlabel('AoA [deg]')
     ylabel('CL / CD')
     xlim([-10 35])
     ylim([-10 10])
 
     for k = 1:length(MyFolderInfo)
          if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(1))
-            scatter(force.aoa(k), force.avg(k, 1), 'r', 'filled');
-%             plot(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), '-r');
+%             scatter(force.aoa(k), force.avg(k, 1), 'r', 'filled');
+            plot(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), '-or');
          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(2))
              scatter(force.aoa(k), force.avg(k, 1), 'o', 'filled');
          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(3))
@@ -270,7 +270,7 @@ end
 %     title(['CM pitch plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
 %     hold on
 %     grid on
-%     xlabel('AoA')
+%     xlabel('AoA [deg]')
 %     ylabel('CL / CD')
 %     xlim([-10 35])
 %     ylim([-10 10])
@@ -295,12 +295,5 @@ end
 % 
 % end
 % 
-
-
-
-
-
-
-
 
 
