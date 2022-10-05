@@ -152,7 +152,7 @@ for j = 1:length(sel_speed)
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
 
     figure
-    title(['Flow Speed: ', num2str(sel_speed(j))])
+    title(['CD/CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
     hold on
     grid on
     xlabel('AoA')
@@ -191,7 +191,7 @@ for j = 1:length(sel_speed)
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
 
     figure
-    title(['Flow Speed: ', num2str(sel_speed(j))])
+    title(['CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
     hold on
     grid on
     xlabel('AoA')
@@ -229,7 +229,7 @@ for j = 1:length(sel_speed)
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
 
     figure
-    title(['Flow Speed: ', num2str(sel_speed(j))])
+    title(['CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
     hold on
     grid on
     xlabel('AoA')
@@ -267,7 +267,7 @@ for j = 1:length(sel_speed)
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
 
     figure
-    title(['Flow Speed: ', num2str(sel_speed(j))])
+    title(['CM pitch plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
     hold on
     grid on
     xlabel('AoA')
@@ -294,15 +294,6 @@ for j = 1:length(sel_speed)
     hold off
 
 end
-
-
-
-
-
-
-
-
-
 
 
 
