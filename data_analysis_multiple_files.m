@@ -236,7 +236,7 @@ for j = 1:length(sel_speed)
     
     clear k1 k2 k3 k4 k5
 
-    figure('Position', [500, 500, 1000, 1000])
+    figure('Position', [200, 200, 800, 800])
 
     title(['CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))],'fontweight','bold','fontsize', 24)
     hold on
