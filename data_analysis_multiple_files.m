@@ -189,107 +189,67 @@ sel_inflation = [0, 1, 2, 3, 4];
 % CL: presenting one plot per selected speed and all inflations, varying
 % angle of attack
 
-% for j = 1:length(sel_speed)
-%     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
-% 
-%     figure
-%     title(['CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
-%     hold on
-%     grid on
-%     xlabel('AoA [deg]')
-%     ylabel('CL / CD')
-%     xlim([-10 35])
-%     ylim([-10 10])
-% 
-%     for k = 1:length(MyFolderInfo)
-%          if (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(1))
-%             scatter(force.aoa(k), force.avg(k, 2), 'r', 'filled');
-% %             plot(force.aoa(k), force.avg(k, 2) / force.avg(k, 1), '-r');
-%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(2))
-%              scatter(force.aoa(k), force.avg(k, 2), 'o', 'filled');
-%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(3))
-%              scatter(force.aoa(k), force.avg(k, 2), 'y', 'filled');
-%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(4))
-%              scatter(force.aoa(k), force.avg(k, 2), 'b', 'filled');
-%          elseif (force.vel(k) == sel_speed(j)) && (force.inflation(k) == sel_inflation(5))
-%              scatter(force.aoa(k), force.avg(k, 2), 'k', 'filled');
-%          end
-%     end
-%     
-%     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
-%      'Location','northwest','Orientation','horizontal')
-%     hold off
-% 
-% end
-% 
-
-
-% CD: presenting one plot per selected speed and all inflations, varying
-% angle of attack
-
-
-% [status, msg, msgID] = mkdir('CD_plot');
-% sz = linspace(1,100,200);
+mkdir('CL_plot');
 
 for j = 1:length(sel_speed)
 
-    [status, msg, msgID] = mkdir(sprintf('../data_analysis/CD_plot/ flow_speed_%d_m/s', sel_speed(j)));
+    [status, msg, msgID] = mkdir(sprintf('../data_analysis/CD_plot/ flow_speed_%d', sel_speed(j)));
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
     div = dyn_pressure * S;
     
     clear k1 k2 k3 k4 k5
 
-    figure('Position', [200, 200, 800, 800])
+    figure('Position', [200, 200, 1000, 1000])
 
-    title(['CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))],'fontweight','bold','fontsize', 24)
+    title(['CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))],'fontweight','bold','fontsize', 24)
     hold on
     grid on
     xlabel('AoA [deg]','fontweight','bold','fontsize', 20);
-    ylabel('CD [ ]','fontweight','bold','fontsize', 20);
+    ylabel('CL [ ]','fontweight','bold','fontsize', 20);
     xlim([-10 35])
-%     ylim([-7 1])
+    ylim([-8.5*10^(-06) 6*10^(-06)])
 
     for k = 1:length(MyFolderInfo)
         if k == 87 
             continue
         end
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
-            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'or', 'filled', 'LineWidth',5)
+            scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / div, 'or', 'filled', 'LineWidth',5)
             if exist('k1','var') == 1
                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k1, 1) / div, exp_value.f_avg(k, 1) / div];
+                y_vec = [exp_value.f_avg(k1, 2) / div, exp_value.f_avg(k, 2) / div];
                 plot(x_vec, y_vec, '--r')
             end
             k1 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'ok', 'filled')
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / div, 'ok', 'filled')
              if exist('k2','var') == 1
                 x_vec = [exp_value.aoa(k2), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k2, 1) / div, exp_value.f_avg(k, 1) / div];
+                y_vec = [exp_value.f_avg(k2, 2) / div, exp_value.f_avg(k, 2) / div];
                 plot(x_vec, y_vec, '--k')
             end
             k2 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'om', 'filled')
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / div, 'om', 'filled')
              if exist('k3','var') == 1
                 x_vec = [exp_value.aoa(k3), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k3, 1) / div, exp_value.f_avg(k, 1) / div];
+                y_vec = [exp_value.f_avg(k3, 2) / div, exp_value.f_avg(k, 2) / div];
                 plot(x_vec, y_vec, '--m')
             end
             k3 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'ob', 'filled')
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / div, 'ob', 'filled')
              if exist('k4','var') == 1
                 x_vec = [exp_value.aoa(k4), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k4, 1) / div, exp_value.f_avg(k, 1) / div];
+                y_vec = [exp_value.f_avg(k4, 2) / div, exp_value.f_avg(k, 2) / div];
                 plot(x_vec, y_vec, '--b')
             end
             k4 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
-            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'og', 'filled')
+            scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / div, 'og', 'filled')
             if exist('k5','var') == 1
                 x_vec = [exp_value.aoa(k5), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k5, 1) / div, exp_value.f_avg(k, 1) / div];
+                y_vec = [exp_value.f_avg(k5, 2) / div, exp_value.f_avg(k, 2) / div];
                 plot(x_vec, y_vec, '--g')
             end
             k5 = k;
@@ -299,10 +259,87 @@ for j = 1:length(sel_speed)
     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
      'Location','north','Orientation','horizontal','fontsize', 16)
     hold off
-
-    saveas(gcf, ['CD_plot_#:' num2str(j) 'Flow speed:' num2str(sel_speed(j)) 'm/s']);
-
+    
+%     saveas(gcf, ['../data_analysis/CL_plot/flow_speed_', num2str(sel_speed(j)),'/CL_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
 end
+
+
+% CD: presenting one plot per selected speed and all inflations, varying
+% angle of attack
+
+% mkdir('CD_plot');
+% 
+% for j = 1:length(sel_speed)
+% 
+%     [status, msg, msgID] = mkdir(sprintf('../data_analysis/CD_plot/ flow_speed_%d', sel_speed(j)));
+%     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
+%     div = dyn_pressure * S;
+%     
+%     clear k1 k2 k3 k4 k5
+% 
+%     figure('Position', [200, 200, 1000, 1000])
+% 
+%     title(['CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))],'fontweight','bold','fontsize', 24)
+%     hold on
+%     grid on
+%     xlabel('AoA [deg]','fontweight','bold','fontsize', 20);
+%     ylabel('CD [ ]','fontweight','bold','fontsize', 20);
+%     xlim([-10 35])
+%     ylim([-7*10^(-06) 10^(-06)])
+% 
+%     for k = 1:length(MyFolderInfo)
+%         if k == 87 
+%             continue
+%         end
+%          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
+%             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'or', 'filled', 'LineWidth',5)
+%             if exist('k1','var') == 1
+%                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
+%                 y_vec = [exp_value.f_avg(k1, 1) / div, exp_value.f_avg(k, 1) / div];
+%                 plot(x_vec, y_vec, '--r')
+%             end
+%             k1 = k;
+%          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
+%              scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'ok', 'filled')
+%              if exist('k2','var') == 1
+%                 x_vec = [exp_value.aoa(k2), exp_value.aoa(k)];
+%                 y_vec = [exp_value.f_avg(k2, 1) / div, exp_value.f_avg(k, 1) / div];
+%                 plot(x_vec, y_vec, '--k')
+%             end
+%             k2 = k;
+%          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
+%              scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'om', 'filled')
+%              if exist('k3','var') == 1
+%                 x_vec = [exp_value.aoa(k3), exp_value.aoa(k)];
+%                 y_vec = [exp_value.f_avg(k3, 1) / div, exp_value.f_avg(k, 1) / div];
+%                 plot(x_vec, y_vec, '--m')
+%             end
+%             k3 = k;
+%          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
+%              scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'ob', 'filled')
+%              if exist('k4','var') == 1
+%                 x_vec = [exp_value.aoa(k4), exp_value.aoa(k)];
+%                 y_vec = [exp_value.f_avg(k4, 1) / div, exp_value.f_avg(k, 1) / div];
+%                 plot(x_vec, y_vec, '--b')
+%             end
+%             k4 = k;
+%          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
+%             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'og', 'filled')
+%             if exist('k5','var') == 1
+%                 x_vec = [exp_value.aoa(k5), exp_value.aoa(k)];
+%                 y_vec = [exp_value.f_avg(k5, 1) / div, exp_value.f_avg(k, 1) / div];
+%                 plot(x_vec, y_vec, '--g')
+%             end
+%             k5 = k;
+%          end
+%     end
+%     
+%     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
+%      'Location','north','Orientation','horizontal','fontsize', 16)
+%     hold off
+%     
+% %     saveas(gcf, ['../data_analysis/CD_plot/flow_speed_', num2str(sel_speed(j)),'/CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
+% end
 
 
 
