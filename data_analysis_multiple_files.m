@@ -228,21 +228,21 @@ sel_inflation = [0, 1, 2, 3, 4];
 % angle of attack
 
 
+mkdir('CD plot');
+% sz = linspace(1,100,200);
+
 for j = 1:length(sel_speed)
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
     
-    clear k1
-    clear k2
-    clear k3
-    clear k4
-    clear k5
+    clear k1 k2 k3 k4 k5
 
-    figure
-    title(['CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))])
+    figure('Position', [500, 500, 1000, 1000])
+
+    title(['CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))],'fontweight','bold','fontsize', 24)
     hold on
     grid on
-    xlabel('AoA [deg]')
-    ylabel('CL / CD')
+    xlabel('AoA [deg]','fontweight','bold','fontsize', 20);
+    ylabel('CL / CD','fontweight','bold','fontsize', 20);
     xlim([-10 35])
     ylim([-7 1])
 
@@ -251,7 +251,7 @@ for j = 1:length(sel_speed)
             continue
         end
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
-            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*r')
+            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'or', 'filled', 'LineWidth',5)
             if exist('k1','var') == 1
                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k1, 1), exp_value.f_avg(k, 1)];
@@ -259,7 +259,7 @@ for j = 1:length(sel_speed)
             end
             k1 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*k')
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'ok', 'filled')
              if exist('k2','var') == 1
                 x_vec = [exp_value.aoa(k2), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k2, 1), exp_value.f_avg(k, 1)];
@@ -267,7 +267,7 @@ for j = 1:length(sel_speed)
             end
             k2 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*m')
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'om', 'filled')
              if exist('k3','var') == 1
                 x_vec = [exp_value.aoa(k3), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k3, 1), exp_value.f_avg(k, 1)];
@@ -275,7 +275,7 @@ for j = 1:length(sel_speed)
             end
             k3 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*b')
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'ob', 'filled')
              if exist('k4','var') == 1
                 x_vec = [exp_value.aoa(k4), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k4, 1), exp_value.f_avg(k, 1)];
@@ -283,7 +283,7 @@ for j = 1:length(sel_speed)
             end
             k4 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
-            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), '*g')
+            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'og', 'filled')
             if exist('k5','var') == 1
                 x_vec = [exp_value.aoa(k5), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k5, 1), exp_value.f_avg(k, 1)];
@@ -294,7 +294,7 @@ for j = 1:length(sel_speed)
     end
     
     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
-     'Location','northwest','Orientation','horizontal')
+     'Location','north','Orientation','horizontal','fontsize', 16)
     hold off
 
 end
