@@ -233,7 +233,7 @@ sel_inflation = [0, 1, 2, 3, 4];
 
 for j = 1:length(sel_speed)
 
-    [status, msg, msgID] = mkdir(sprintf('..data_analysis/CD_plot/ flow_speed_%d_m/s', sel_speed(j)));
+    [status, msg, msgID] = mkdir(sprintf('../data_analysis/CD_plot/ flow_speed_%d_m/s', sel_speed(j)));
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
     div = dyn_pressure * S;
     
