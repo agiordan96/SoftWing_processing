@@ -9,7 +9,7 @@ set(groot,'DefaultLineLineWidth',1.5)
 
 %% data reading
 
-MyFolderInfo = dir('usable Data full');
+MyFolderInfo = dir('usable Data');
 
 exp_value  = struct;
 
