@@ -228,11 +228,14 @@ sel_inflation = [0, 1, 2, 3, 4];
 % angle of attack
 
 
-mkdir('CD plot');
+% [status, msg, msgID] = mkdir('CD_plot');
 % sz = linspace(1,100,200);
 
 for j = 1:length(sel_speed)
+
+    [status, msg, msgID] = mkdir(sprintf('..data_analysis/CD_plot/ flow_speed_%d_m/s', sel_speed(j)));
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
+    div = dyn_pressure * S;
     
     clear k1 k2 k3 k4 k5
 
@@ -242,51 +245,51 @@ for j = 1:length(sel_speed)
     hold on
     grid on
     xlabel('AoA [deg]','fontweight','bold','fontsize', 20);
-    ylabel('CL / CD','fontweight','bold','fontsize', 20);
+    ylabel('CD [ ]','fontweight','bold','fontsize', 20);
     xlim([-10 35])
-    ylim([-7 1])
+%     ylim([-7 1])
 
     for k = 1:length(MyFolderInfo)
         if k == 87 
             continue
         end
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
-            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'or', 'filled', 'LineWidth',5)
+            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'or', 'filled', 'LineWidth',5)
             if exist('k1','var') == 1
                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k1, 1), exp_value.f_avg(k, 1)];
+                y_vec = [exp_value.f_avg(k1, 1) / div, exp_value.f_avg(k, 1) / div];
                 plot(x_vec, y_vec, '--r')
             end
             k1 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'ok', 'filled')
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'ok', 'filled')
              if exist('k2','var') == 1
                 x_vec = [exp_value.aoa(k2), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k2, 1), exp_value.f_avg(k, 1)];
+                y_vec = [exp_value.f_avg(k2, 1) / div, exp_value.f_avg(k, 1) / div];
                 plot(x_vec, y_vec, '--k')
             end
             k2 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'om', 'filled')
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'om', 'filled')
              if exist('k3','var') == 1
                 x_vec = [exp_value.aoa(k3), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k3, 1), exp_value.f_avg(k, 1)];
+                y_vec = [exp_value.f_avg(k3, 1) / div, exp_value.f_avg(k, 1) / div];
                 plot(x_vec, y_vec, '--m')
             end
             k3 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
-             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'ob', 'filled')
+             scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'ob', 'filled')
              if exist('k4','var') == 1
                 x_vec = [exp_value.aoa(k4), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k4, 1), exp_value.f_avg(k, 1)];
+                y_vec = [exp_value.f_avg(k4, 1) / div, exp_value.f_avg(k, 1) / div];
                 plot(x_vec, y_vec, '--b')
             end
             k4 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
-            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1), 'og', 'filled')
+            scatter(exp_value.aoa(k), exp_value.f_avg(k, 1) / div, 'og', 'filled')
             if exist('k5','var') == 1
                 x_vec = [exp_value.aoa(k5), exp_value.aoa(k)];
-                y_vec = [exp_value.f_avg(k5, 1), exp_value.f_avg(k, 1)];
+                y_vec = [exp_value.f_avg(k5, 1) / div, exp_value.f_avg(k, 1) / div];
                 plot(x_vec, y_vec, '--g')
             end
             k5 = k;
@@ -296,6 +299,8 @@ for j = 1:length(sel_speed)
     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
      'Location','north','Orientation','horizontal','fontsize', 16)
     hold off
+
+    saveas(gcf, ['CD_plot_#:' num2str(j) 'Flow speed:' num2str(sel_speed(j)) 'm/s']);
 
 end
 
