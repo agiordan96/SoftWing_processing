@@ -110,11 +110,9 @@ rho = 1000; % kg / m^3 density of water
 tor_transposed = zeros(length(MyFolderInfo), 3);
 tor_transposed(1:end, 1:3) = exp_value.t_avg(1:end, 1:3) + exp_value.f_avg(1:end, 1:3) * d;
 
-%% data visualization
+%% data visualization: plots against AoA
 
 close all
-
-% plots against AoA
 
 sel_speed = [10, 15, 20, 25, 30, 40, 50];
 sel_inflation = [0, 1, 2, 3, 4];
