@@ -110,6 +110,7 @@ d = [dx; dy; dz];
 
 S = 1; % m^2, wing's surface
 rho = 1000; % kg / m^3 density of water
+dyn_viscosity = 10^(-3); % Pa*s
 
 tor_transposed = zeros(length(exp_value.t_avg), 3);
 tor_transposed(1:end, 1:3) = exp_value.t_avg(1:end, 1:3) + exp_value.f_avg(1:end, 1:3) * d;
@@ -200,12 +201,9 @@ sel_inflation = [0, 1, 2, 3, 4];
 % CL: presenting one plot per selected speed and all inflations, varying
 % angle of attack
 
-% mkdir('CL_plot');
-% rehash
-% 
 % for j = 1:length(sel_speed)
 % 
-% %     [status, msg, msgID] = mkdir(sprintf('../data_analysis/CL_plot/ flow_speed_%d', sel_speed(j)));
+%     [status, msg, msgID] = mkdir(sprintf('../pic/CL_plot/flow_speed_%d', sel_speed(j)));
 %     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
 %     div = dyn_pressure * S;
 %     
@@ -217,9 +215,9 @@ sel_inflation = [0, 1, 2, 3, 4];
 %     hold on
 %     grid on
 %     xlabel('AoA [deg]','fontweight','bold','fontsize', 20);
-%     ylabel('CL [ ]','fontweight','bold','fontsize', 20);
+%     ylabel('CL [E-06]','fontweight','bold','fontsize', 20);
 %     xlim([-10 35])
-%     ylim([-8.5*10^(-06) 6*10^(-06)])
+%     ylim([-8.5 6])
 % 
 %     for k = 1:length(MyFolderInfo)
 %         if k == 87 
@@ -279,8 +277,6 @@ sel_inflation = [0, 1, 2, 3, 4];
 % CD: presenting one plot per selected speed and all inflations, varying
 % angle of attack
 
-mkdir('CD_plot');
-
 for j = 1:length(sel_speed)
 
     [status, msg, msgID] = mkdir(sprintf('../pic/CD_plot/flow_speed_%d', sel_speed(j)));
@@ -312,6 +308,7 @@ for j = 1:length(sel_speed)
             end
             k1 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
+             errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), exp_value.f_std(k), 'ok', 'CapSize', 18, 'MarkerFaceColor', 'b', 'LineWidth', 1, MarkerEdgeColor = 'black')
              scatter(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), 'ok', 'filled')
              if exist('k2','var') == 1
                 x_vec = [exp_value.aoa(k2), exp_value.aoa(k)];
@@ -320,7 +317,7 @@ for j = 1:length(sel_speed)
             end
             k2 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
-             scatter(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), 'om', 'filled')
+             errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), exp_value.f_std(k), 'om', 'CapSize', 18, 'MarkerFaceColor', 'm', 'LineWidth', 1, MarkerEdgeColor = 'magenta')
              if exist('k3','var') == 1
                 x_vec = [exp_value.aoa(k3), exp_value.aoa(k)];
                 y_vec = [(exp_value.f_avg(k3, 1) / div) * 10^(06), (exp_value.f_avg(k, 1) / div) * 10^(06)];
@@ -328,7 +325,7 @@ for j = 1:length(sel_speed)
             end
             k3 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
-             scatter(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), 'ob', 'filled')
+             errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), exp_value.f_std(k), 'ob', 'CapSize', 18, 'MarkerFaceColor', 'b', 'LineWidth', 1, MarkerEdgeColor = 'blue')
              if exist('k4','var') == 1
                 x_vec = [exp_value.aoa(k4), exp_value.aoa(k)];
                 y_vec = [(exp_value.f_avg(k4, 1) / div) * 10^(06), (exp_value.f_avg(k, 1) / div) * 10^(06)];
@@ -336,8 +333,8 @@ for j = 1:length(sel_speed)
             end
             k4 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
-            scatter(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), 'og', 'filled')
-            if exist('k5','var') == 1
+             errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), exp_value.f_std(k), 'og', 'CapSize', 18, 'MarkerFaceColor', 'g', 'LineWidth', 1, MarkerEdgeColor = 'green')
+             if exist('k5','var') == 1
                 x_vec = [exp_value.aoa(k5), exp_value.aoa(k)];
                 y_vec = [(exp_value.f_avg(k5, 1) / div) * 10^(06), (exp_value.f_avg(k, 1) / div) * 10^(06)];
                 plot(x_vec, y_vec, '--g')
