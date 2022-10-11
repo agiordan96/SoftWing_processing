@@ -111,7 +111,7 @@ d = [dx; dy; dz];
 S = 1; % m^2, wing's surface
 rho = 1000; % kg / m^3 density of water
 
-tor_transposed = zeros(length(MyFolderInfo), 3);
+tor_transposed = zeros(length(exp_value.t_avg), 3);
 tor_transposed(1:end, 1:3) = exp_value.t_avg(1:end, 1:3) + exp_value.f_avg(1:end, 1:3) * d;
 
 %% data visualization: plots against AoA
@@ -299,13 +299,12 @@ for j = 1:length(sel_speed)
     xlim([-10 35])
     ylim([-7 1])
 
-    for k = 1:length(MyFolderInfo)
+    for k = 1:length(exp_value.f_avg)
         if k == 87 
             continue
         end
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
-%             scatter(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), 'or', 'filled', 'LineWidth',5)
-            errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), exp_value.f_std(k), 'o', 'MarkerFaceColor', 'r', MarkerEdgeColor = 'red')
+            errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), exp_value.f_std(k), 'or', 'CapSize', 18, 'MarkerFaceColor', 'r', 'LineWidth', 1, MarkerEdgeColor = 'red')
             if exist('k1','var') == 1
                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
                 y_vec = [(exp_value.f_avg(k1, 1) / div) * 10^(06), (exp_value.f_avg(k, 1) / div) * 10^(06)];
@@ -353,14 +352,14 @@ for j = 1:length(sel_speed)
     saveas(gcf, ['../pic/CD_plot/flow_speed_', num2str(sel_speed(j)),'/CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
     if ~isfolder('..')
         error('Corrupt or very very old file system, missing .. directory entry')
-    elseif ~isfolder('../data_analysis')
+    elseif ~isfolder('../pic')
         error('No folder ../data_analysis')
-    elseif ~isfolder('../data_analysis/CD_plot')
-        error('No folder ../data_analysis/CD_plot')
-    elseif ~isfolder('../data_analysis/CD_plot/flow_speed_10')
-        error('No folder ../data_analysis/CD_plot/flow_speed_10')
+    elseif ~isfolder('../pic/CD_plot')
+        error('No folder ../pic/CD_plot')
+    elseif ~isfolder('../pic/CD_plot/flow_speed_10')
+        error('No folder ../pic/CD_plot/flow_speed_10')
     else
-        fprintf('folder path ../data_analysis/CD_plot/flow_speed_10 is okay')
+        fprintf('folder path ../pic/CD_plot/flow_speed_10 is okay \n')
     end
 
 end
