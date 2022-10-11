@@ -283,7 +283,7 @@ mkdir('CD_plot');
 
 for j = 1:length(sel_speed)
 
-    [status, msg, msgID] = mkdir(sprintf('../data_analysis/CD_plot/flow_speed_%d', sel_speed(j)));
+    [status, msg, msgID] = mkdir(sprintf('../pic/CD_plot/flow_speed_%d', sel_speed(j)));
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
     div = dyn_pressure * S;
     
@@ -350,7 +350,7 @@ for j = 1:length(sel_speed)
     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
      'Location','north','Orientation','horizontal','fontsize', 16)
     hold off
-    saveas(gcf, ['../data_analysis/CD_plot/flow_speed_', num2str(sel_speed(j)),'/CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
+    saveas(gcf, ['../pic/CD_plot/flow_speed_', num2str(sel_speed(j)),'/CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
     if ~isfolder('..')
         error('Corrupt or very very old file system, missing .. directory entry')
     elseif ~isfolder('../data_analysis')
