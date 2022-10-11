@@ -61,6 +61,12 @@ for k = 1:length(MyFolderInfo)
 
 end
 
+remove = (exp_value.f_avg(:, 1) == 0);
+fields = fieldnames(exp_value);
+for k = 1:numel(fields)
+    exp_value.(fields{k})(remove, :) = [];
+end
+
 clear exp_table
 
 %% data sorting
