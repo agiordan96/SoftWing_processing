@@ -33,7 +33,6 @@ torque.aoa = zeros(length(MyFolderInfo), 1);
 torque.vel = zeros(length(MyFolderInfo), 1);
 torque.inflation = zeros(length(MyFolderInfo), 1);
 
-
 for k = 1:length(MyFolderInfo) 
 
     if MyFolderInfo(k).name == '.' 
@@ -61,8 +60,6 @@ for k = 1:length(MyFolderInfo)
     exp_value.inflation(k) = str2double(MyFolderInfo(k).name(7));
 
 end
-
-% exp_value = exp_value(exp_value.f_avg(:, 1)~=0);
 
 clear exp_table
 
@@ -280,7 +277,7 @@ mkdir('CD_plot');
 
 for j = 1:length(sel_speed)
 
-%     [status, msg, msgID] = mkdir(sprintf('../data_analysis/CD_plot/ flow_speed_%d', sel_speed(j)));
+    [status, msg, msgID] = mkdir(sprintf('../data_analysis/CD_plot/flow_speed_%d', sel_speed(j)));
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
     div = dyn_pressure * S;
     
@@ -301,7 +298,8 @@ for j = 1:length(sel_speed)
             continue
         end
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
-            scatter(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), 'or', 'filled', 'LineWidth',5)
+%             scatter(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), 'or', 'filled', 'LineWidth',5)
+            errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), exp_value.f_std(k), 'o', 'MarkerFaceColor', 'r', MarkerEdgeColor = 'red')
             if exist('k1','var') == 1
                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
                 y_vec = [(exp_value.f_avg(k1, 1) / div) * 10^(06), (exp_value.f_avg(k, 1) / div) * 10^(06)];
@@ -346,20 +344,19 @@ for j = 1:length(sel_speed)
     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
      'Location','north','Orientation','horizontal','fontsize', 16)
     hold off
-    
-    saveas(gcf, ['../data_analysis/CD_plot/', 'CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j)), 'm_over_s'], 'svg');
+    saveas(gcf, ['../data_analysis/CD_plot/flow_speed_', num2str(sel_speed(j)),'/CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
+    if ~isfolder('..')
+        error('Corrupt or very very old file system, missing .. directory entry')
+    elseif ~isfolder('../data_analysis')
+        error('No folder ../data_analysis')
+    elseif ~isfolder('../data_analysis/CD_plot')
+        error('No folder ../data_analysis/CD_plot')
+    elseif ~isfolder('../data_analysis/CD_plot/flow_speed_10')
+        error('No folder ../data_analysis/CD_plot/flow_speed_10')
+    else
+        fprintf('folder path ../data_analysis/CD_plot/flow_speed_10 is okay')
+    end
 
-%     if ~isdir('..')
-%         error('Corrupt or very very old file system, missing .. directory entry')
-%     elseif ~isdir('../data_analysis')
-%         error('No folder ../data_analysis')
-%     elseif ~isdir('../data_analysis/CD_plot')
-%         error('No folder ../data_analysis/CD_plot')
-%     elseif ~isdir('../data_analysis/CD_plot/flow_speed_10')
-%         error('No folder ../data_analysis/CD_plot/flow_speed_10')
-%     else
-%         fprintf('folder path ../data_analysis/CD_plot/flow_speed_10 is okay')
-%     end
 end
 
 
