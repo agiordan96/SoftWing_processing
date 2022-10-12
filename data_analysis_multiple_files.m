@@ -157,7 +157,7 @@ for j = 1:length(sel_speed)
                 errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'or', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'r', 'LineWidth', 1, MarkerEdgeColor = 'red')
                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k1, 2) / exp_value.f_avg(k1, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-                plot(x_vec, y_vec, '--r')
+                plot(x_vec, y_vec, '--r', 'HandleVisibility','off')
             end
             k1 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
@@ -168,7 +168,7 @@ for j = 1:length(sel_speed)
                 errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'ok', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'k', 'LineWidth', 1, MarkerEdgeColor = 'black')
                 x_vec = [exp_value.aoa(k2), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k2, 2) / exp_value.f_avg(k2, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-                plot(x_vec, y_vec, '--k')
+                plot(x_vec, y_vec, '--k', 'HandleVisibility','off')
             end
             k2 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
@@ -178,7 +178,7 @@ for j = 1:length(sel_speed)
                 errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'om', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'm', 'LineWidth', 1, MarkerEdgeColor = 'magenta')
                 x_vec = [exp_value.aoa(k3), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k3, 2) / exp_value.f_avg(k3, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-                plot(x_vec, y_vec, '--m')
+                plot(x_vec, y_vec, '--m', 'HandleVisibility','off')
             end
             k3 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
@@ -188,7 +188,7 @@ for j = 1:length(sel_speed)
                 errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'ob', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'b', 'LineWidth', 1, MarkerEdgeColor = 'blue')
                 x_vec = [exp_value.aoa(k4), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k4, 2) / exp_value.f_avg(k4, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-                plot(x_vec, y_vec, '--b')
+                plot(x_vec, y_vec, '--b', 'HandleVisibility','off')
             end
             k4 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
@@ -198,7 +198,7 @@ for j = 1:length(sel_speed)
                 errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'og', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'b', 'LineWidth', 1, MarkerEdgeColor = 'green')
                 x_vec = [exp_value.aoa(k5), exp_value.aoa(k)];
                 y_vec = [exp_value.f_avg(k5, 2) / exp_value.f_avg(k5, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-                plot(x_vec, y_vec, '--g')
+                plot(x_vec, y_vec, '--g', 'HandleVisibility','off')
             end
             k5 = k;
          end
