@@ -236,7 +236,6 @@ for j = 1:length(sel_speed)
             k1 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
              errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 2) / div) * 10^(06), exp_value.f_std(k), 'ok', 'CapSize', 18, 'MarkerFaceColor', 'k', 'LineWidth', 1, MarkerEdgeColor = 'black')
-%              scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / div, 'ok', 'filled')
              if exist('k2','var') == 1
                 x_vec = [exp_value.aoa(k2), exp_value.aoa(k)];
                 y_vec = [(exp_value.f_avg(k2, 2) / div) * 10^(06), (exp_value.f_avg(k, 2) / div) * 10^(06)];
@@ -245,7 +244,6 @@ for j = 1:length(sel_speed)
             k2 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
              errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 2) / div) * 10^(06), exp_value.f_std(k), 'om', 'CapSize', 18, 'MarkerFaceColor', 'm', 'LineWidth', 1, MarkerEdgeColor = 'magenta')
-%              scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / div, 'om', 'filled')
              if exist('k3','var') == 1
                 x_vec = [exp_value.aoa(k3), exp_value.aoa(k)];
                 y_vec = [(exp_value.f_avg(k3, 2) / div) * 10^(06), (exp_value.f_avg(k, 2) / div) * 10^(06)];
@@ -254,7 +252,6 @@ for j = 1:length(sel_speed)
             k3 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
              errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 2) / div) * 10^(06), exp_value.f_std(k), 'ob', 'CapSize', 18, 'MarkerFaceColor', 'b', 'LineWidth', 1, MarkerEdgeColor = 'blue')
-%              scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / div, 'ob', 'filled')
              if exist('k4','var') == 1
                 x_vec = [exp_value.aoa(k4), exp_value.aoa(k)];
                 y_vec = [(exp_value.f_avg(k4, 2) / div) * 10^(06), (exp_value.f_avg(k, 2) / div) * 10^(06)];
@@ -263,7 +260,6 @@ for j = 1:length(sel_speed)
             k4 = k;
          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
             errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 2) / div) * 10^(06), exp_value.f_std(k), 'og', 'CapSize', 18, 'MarkerFaceColor', 'g', 'LineWidth', 1, MarkerEdgeColor = 'green')
-%             scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / div, 'og', 'filled')
             if exist('k5','var') == 1
                 x_vec = [exp_value.aoa(k5), exp_value.aoa(k)];
                 y_vec = [(exp_value.f_avg(k5, 2) / div) * 10^(06), (exp_value.f_avg(k, 2) / div) * 10^(06)];
