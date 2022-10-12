@@ -128,76 +128,87 @@ sel_inflation = [0, 4, 1, 2, 3];
 % CL / CD: presenting one plot per selected speed and all inflations, varying
 % angle of attack
 
-% mkdir('CL_over_CD_plot');
-% 
-% for j = 1:length(sel_speed)
-% 
-%     [status, msg, msgID] = mkdir(sprintf('../data_analysis/CL_over_CD_plot/ flow_speed_%d', sel_speed(j)));
-%     rehash;  
-%     clear k1 k2 k3 k4 k5
-% 
-%     figure('Position', [200, 200, 1000, 1000])
-% 
-%     title(['CL / CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))],'fontweight','bold','fontsize', 24)
-%     hold on
-%     grid on
-%     xlabel('AoA [deg]','fontweight','bold','fontsize', 20);
-%     ylabel('CL [ ]','fontweight','bold','fontsize', 20);
-%     xlim([-10 35])
-%     ylim([-8.5*10^(-06) 6*10^(-06)])
+mkdir('CL_over_CD_plot');
 
-%     for k = 1:length(exp_value.f_avg)
-%         if k == 87 
-%             continue
-%         end
-%          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
-%             scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), 'or', 'filled', 'LineWidth',5)
-%             if exist('k1','var') == 1
-%                 x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
-%                 y_vec = [exp_value.f_avg(k1, 2) / exp_value.f_avg(k1, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-%                 plot(x_vec, y_vec, '--r')
-%             end
-%             k1 = k;
-%          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
-%              scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), 'ok', 'filled')
-%              if exist('k2','var') == 1
-%                 x_vec = [exp_value.aoa(k2), exp_value.aoa(k)];
-%                 y_vec = [exp_value.f_avg(k2, 2) / exp_value.f_avg(k2, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-%                 plot(x_vec, y_vec, '--k')
-%             end
-%             k2 = k;
-%          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
-%              scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), 'om', 'filled')
-%              if exist('k3','var') == 1
-%                 x_vec = [exp_value.aoa(k3), exp_value.aoa(k)];
-%                 y_vec = [exp_value.f_avg(k3, 2) / exp_value.f_avg(k3, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-%                 plot(x_vec, y_vec, '--m')
-%             end
-%             k3 = k;
-%          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
-%              scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), 'ob', 'filled')
-%              if exist('k4','var') == 1
-%                 x_vec = [exp_value.aoa(k4), exp_value.aoa(k)];
-%                 y_vec = [exp_value.f_avg(k4, 2) / exp_value.f_avg(k4, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-%                 plot(x_vec, y_vec, '--b')
-%             end
-%             k4 = k;
-%          elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
-%             scatter(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), 'og', 'filled')
-%             if exist('k5','var') == 1
-%                 x_vec = [exp_value.aoa(k5), exp_value.aoa(k)];
-%                 y_vec = [exp_value.f_avg(k5, 2) / exp_value.f_avg(k5, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
-%                 plot(x_vec, y_vec, '--g')
-%             end
-%             k5 = k;
-%          end
-%     end
-%     
-%     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
-%      'Location','north','Orientation','horizontal','fontsize', 16)
-%     hold off
-%     %saveas(gcf, ['../data_analysis/CL_over_CD_plot/flow_speed_', num2str(sel_speed(j)),'/CL_over_CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
-% end
+for j = 1:length(sel_speed)
+
+    [status, msg, msgID] = mkdir(sprintf('../pic/CL_over_CD_plot/ flow_speed_%d', sel_speed(j)));
+    clear k1 k2 k3 k4 k5
+
+    figure('Position', [200, 200, 1000, 1000])
+
+    title(['CL / CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))],'fontweight', 'bold', 'fontsize', 24)
+    legend('Location','north','Orientation','horizontal','fontsize', 16)
+    hold on
+    grid on
+    xlabel('AoA [deg]','fontweight','bold','fontsize', 20);
+    ylabel('CL / CD [ ]','fontweight','bold','fontsize', 20);
+    xlim([-10 35])
+    ylim([-8.5*10^(-06) 6*10^(-06)])
+
+    for k = 1:length(exp_value.f_avg)
+        if k == 87 
+            continue
+        end
+         if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
+            if exist('k1','var') == 0
+            errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'or', 'DisplayName', 'inf. = 0 mL', 'CapSize', 18, 'MarkerFaceColor', 'r', 'LineWidth', 1, MarkerEdgeColor = 'red')
+            else
+                errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'or', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'r', 'LineWidth', 1, MarkerEdgeColor = 'red')
+                x_vec = [exp_value.aoa(k1), exp_value.aoa(k)];
+                y_vec = [exp_value.f_avg(k1, 2) / exp_value.f_avg(k1, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
+                plot(x_vec, y_vec, '--r')
+            end
+            k1 = k;
+         elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(2))
+             if exist('k2','var') == 0
+             errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'ok', 'DisplayName', 'inf. = 30 mL', 'CapSize', 18, 'MarkerFaceColor', 'k', 'LineWidth', 1, MarkerEdgeColor = 'black')
+
+             else
+                errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'ok', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'k', 'LineWidth', 1, MarkerEdgeColor = 'black')
+                x_vec = [exp_value.aoa(k2), exp_value.aoa(k)];
+                y_vec = [exp_value.f_avg(k2, 2) / exp_value.f_avg(k2, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
+                plot(x_vec, y_vec, '--k')
+            end
+            k2 = k;
+         elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(3))
+             if exist('k3','var') == 0
+             errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'om', 'DisplayName', 'inf. = 60 mL', 'CapSize', 18, 'MarkerFaceColor', 'm', 'LineWidth', 1, MarkerEdgeColor = 'magenta')
+             else
+                errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'om', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'm', 'LineWidth', 1, MarkerEdgeColor = 'magenta')
+                x_vec = [exp_value.aoa(k3), exp_value.aoa(k)];
+                y_vec = [exp_value.f_avg(k3, 2) / exp_value.f_avg(k3, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
+                plot(x_vec, y_vec, '--m')
+            end
+            k3 = k;
+         elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(4))
+             if exist('k4','var') == 0
+             errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'ob', 'DisplayName', 'inf. = 90 mL', 'CapSize', 18, 'MarkerFaceColor', 'b', 'LineWidth', 1, MarkerEdgeColor = 'blue')
+             else
+                errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'ob', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'b', 'LineWidth', 1, MarkerEdgeColor = 'blue')
+                x_vec = [exp_value.aoa(k4), exp_value.aoa(k)];
+                y_vec = [exp_value.f_avg(k4, 2) / exp_value.f_avg(k4, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
+                plot(x_vec, y_vec, '--b')
+            end
+            k4 = k;
+         elseif (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(5))
+             if exist('k5','var') == 0
+            errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'og', 'DisplayName', 'inf. = 120 mL', 'CapSize', 18, 'MarkerFaceColor', 'g', 'LineWidth', 1, MarkerEdgeColor = 'green')
+            else
+                errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'og', 'HandleVisibility','off', 'CapSize', 18, 'MarkerFaceColor', 'b', 'LineWidth', 1, MarkerEdgeColor = 'green')
+                x_vec = [exp_value.aoa(k5), exp_value.aoa(k)];
+                y_vec = [exp_value.f_avg(k5, 2) / exp_value.f_avg(k5, 1), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1)];
+                plot(x_vec, y_vec, '--g')
+            end
+            k5 = k;
+         end
+    end
+    
+    str_annotation = sprintf('Re = %.3e', Re);
+    annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, 'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' )
+    hold off
+    saveas(gcf, ['../data_analysis/CL_over_CD_plot/', 'CL_over_CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
+end
 
 
 
