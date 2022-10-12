@@ -150,6 +150,7 @@ for j = 1:length(sel_speed)
         if k == 87 
             continue
         end
+
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
             if exist('k1','var') == 0
             errorbar(exp_value.aoa(k), exp_value.f_avg(k, 2) / exp_value.f_avg(k, 1), exp_value.f_std(k), 'or', 'DisplayName', 'inf. = 0 mL', 'CapSize', 18, 'MarkerFaceColor', 'r', 'LineWidth', 1, MarkerEdgeColor = 'red')
@@ -239,6 +240,7 @@ for j = 1:length(sel_speed)
         if k == 87 
             continue
         end
+
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
             if exist('k1','var') == 0
                 errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 2) / div) * 10^(06), exp_value.f_std(k, 2), 'or', 'DisplayName', 'inf. = 0 mL', 'CapSize', 18, 'MarkerFaceColor', 'r', 'LineWidth', 1, MarkerEdgeColor = 'red')
@@ -337,6 +339,7 @@ for j = 1:length(sel_speed)
         if k == 87 
             continue
         end
+        
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
             if exist('k1','var') == 0
                 errorbar(exp_value.aoa(k), (exp_value.f_avg(k, 1) / div) * 10^(06), exp_value.f_std(k), 'or', 'DisplayName', 'inf. = 0 mL', 'CapSize', 18, 'MarkerFaceColor', 'r', 'LineWidth', 1, MarkerEdgeColor = 'red')
