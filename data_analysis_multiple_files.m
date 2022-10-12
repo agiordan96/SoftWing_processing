@@ -120,6 +120,7 @@ tor_transposed(1:end, 1:3) = exp_value.t_avg(1:end, 1:3) + exp_value.f_avg(1:end
 %% data visualization: plots against AoA
 
 close all
+format short
 
 sel_speed = [10, 15, 20, 25, 30, 40, 50];
 sel_inflation = [0, 1, 2, 3, 4];
@@ -284,7 +285,7 @@ for j = 1:length(sel_speed)
     [status, msg, msgID] = mkdir(sprintf('../pic/CD_plot/flow_speed_%d', sel_speed(j)));
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
     div = dyn_pressure * S;
-    Re = sel_speed(j) * chord / kin_viscosity;
+    Re = sel_speed(j) * chord / kin_viscosity; % Reynolds number
     
     clear k1 k2 k3 k4 k5
 
@@ -348,9 +349,9 @@ for j = 1:length(sel_speed)
     
     legend({'inf. = 0 mL', 'inf. = 60 mL', 'inf. = 90 mL', 'inf. = 120 mL', 'inf. = 30 mL'}, ... 
      'Location','north','Orientation','horizontal','fontsize', 16)
-    str_annotation = sprintf('Fit: Re = %d', Re);
-    annotation('textbox',[0.57,0.5,0.1,0.1],'String', str_annotation, ...
-           'BackgroundColor','white','LineStyle','-','Fontsize',12,'Interpreter','latex')
+    str_annotation = sprintf('Re = %.3e', Re);
+    annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, ...
+           'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' )
     hold off
     saveas(gcf, ['../pic/CD_plot/flow_speed_', num2str(sel_speed(j)),'/CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
     if ~isfolder('..')
