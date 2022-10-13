@@ -69,6 +69,8 @@ end
 
 clear exp_table
 
+disp('data read completed \n')
+
 %% data sorting
 
 T = struct2table(exp_value); % convert the struct array to a table
@@ -76,6 +78,8 @@ sortedT = sortrows(T, 'aoa'); % sort the table by 'aoa'
 exp_value = table2struct(sortedT,'ToScalar',true); % convert the table back to the struct array
 
 clear T sortedT
+
+disp('data sorting completed \n')
 
 %% data processing
 
@@ -117,17 +121,19 @@ kin_viscosity = dyn_viscosity / rho;
 tor_transposed = zeros(length(exp_value.t_avg), 3);
 tor_transposed(1:end, 1:3) = exp_value.t_avg(1:end, 1:3) + exp_value.f_avg(1:end, 1:3) * d;
 
+disp('data processing completed \n')
+
 %% data visualization: plots against AoA
 
 close all
 format short
 
 sel_speed = [10, 15, 20, 25, 30, 40, 50];
-sel_inflation = [0, 4, 1, 2, 3];
+sel_inflation = [0, 1, 2, 3, 4];
 
 % CL / CD: presenting one plot per selected speed and all inflations, varying
 % angle of attack
-
+% 
 for j = 1:length(sel_speed)
 
     [status, msg, msgID] = mkdir(sprintf('../pic/CL_over_CD_plot/ flow_speed_%d', sel_speed(j)));
@@ -135,7 +141,7 @@ for j = 1:length(sel_speed)
 
     clear k1 k2 k3 k4 k5
 
-    figure('Position', [200, 200, 1000, 1000])
+    figure('Position', [200, 200, 500, 500])
 
     title(['CL / CD plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))],'fontweight', 'bold', 'fontsize', 24)
     legend('Location','north','Orientation','horizontal','fontsize', 16)
@@ -208,7 +214,7 @@ for j = 1:length(sel_speed)
     str_annotation = sprintf('Re = %.3e', Re);
     annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, 'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' )
     hold off
-    saveas(gcf, ['../pic/CL_over_CD_plot/', 'CL_over_CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
+%     saveas(gcf, ['../pic/CL_over_CD_plot/', 'CL_over_CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
 end
 
 
