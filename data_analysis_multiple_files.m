@@ -304,7 +304,7 @@ for j = 1:length(sel_speed) % looping over flow speed to create fixed-speed plot
     annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, ...
            'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex')
     hold off
-%     saveas(gcf, ['../pic/CL_plot/', 'CL_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg');
+    saveas(gcf, ['../pic/CL_plot/', 'CL_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg');
     if ~isfolder('..')
         error('Corrupt or very very old file system, missing .. directory entry')
     elseif ~isfolder('../pic')
@@ -400,7 +400,7 @@ for j = 1:length(sel_speed) % looping over flow speed to create fixed-speed plot
     annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, ...
            'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' )
     hold off
-%     saveas(gcf, ['../pic/CD_plot/','/CD_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg');
+    saveas(gcf, ['../pic/CD_plot/','/CD_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg');
     if ~isfolder('..')
         error('Corrupt or very very old file system, missing .. directory entry')
     elseif ~isfolder('../pic')
