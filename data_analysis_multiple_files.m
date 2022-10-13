@@ -214,7 +214,7 @@ sel_inflation = [0, 1, 2, 3, 4];
 %     str_annotation = sprintf('Re = %.3e', Re);
 %     annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, 'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' )
 %     hold off
-% %     saveas(gcf, ['../pic/CL_over_CD_plot/', 'CL_over_CD_plot_#', num2str(j), 'flow_speed', num2str(sel_speed(j))], 'svg');
+% %     saveas(gcf, ['../pic/CL_over_CD_plot/', 'CL_over_CD_plot_#', num2str(j), 'flow_speed_0_', 100 * num2str(sel_speed(j))], 'svg');
 % end
 
 
@@ -224,13 +224,13 @@ sel_inflation = [0, 1, 2, 3, 4];
 
 for j = 1:length(sel_speed)
 
-    [status, msg, msgID] = mkdir(sprintf('../pic/CL_plot/flow_speed_%d', sel_speed(j)));
+    [status, msg, msgID] = mkdir('../pic/CL_plot/');
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
     div = dyn_pressure * S;
     Re = sel_speed(j) * chord / kin_viscosity; % Reynolds number
     
     clear k1 k2 k3 k4 k5
-
+    
     figure('Position', [200, 200, 1000, 1000])
 
     title(['CL plot # ', num2str(j), '; Flow Speed: ', num2str(sel_speed(j))],'fontweight','bold','fontsize', 24)
@@ -243,9 +243,9 @@ for j = 1:length(sel_speed)
     ylim([-.5 .5])
 
     for k = 1:length(exp_value.f_avg)
-        if k == 87 
-            continue
-        end
+%         if k == 87 
+%             continue
+%         end
 
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
             if exist('k1','var') == 0
@@ -302,9 +302,9 @@ for j = 1:length(sel_speed)
     
     str_annotation = sprintf('Re = %.2e', Re);
     annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, ...
-           'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' )
+           'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex')
     hold off
-    saveas(gcf, ['../pic/CL_plot/', 'CL_plot_#', num2str(j), '_flow_speed', num2str(sel_speed(j))], 'svg');
+    saveas(gcf, ['../pic/CL_plot/', 'CL_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg');
     if ~isfolder('..')
         error('Corrupt or very very old file system, missing .. directory entry')
     elseif ~isfolder('../pic')
@@ -323,7 +323,7 @@ end
 
 for j = 1:length(sel_speed)
 
-    [status, msg, msgID] = mkdir(sprintf('../pic/CD_plot/flow_speed_%d', sel_speed(j)));
+    [status, msg, msgID] = mkdir('../pic/CD_plot/');
     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
     div = dyn_pressure * S;
     Re = sel_speed(j) * chord / kin_viscosity; % Reynolds number
@@ -342,9 +342,9 @@ for j = 1:length(sel_speed)
 %     ylim([-7 1])
 
     for k = 1:length(exp_value.f_avg)
-        if k == 87 
-            continue
-        end
+%         if k == 87 
+%             continue
+%         end
 
          if (exp_value.vel(k) == sel_speed(j)) && (exp_value.inflation(k) == sel_inflation(1))
             if exist('k1','var') == 0
@@ -403,7 +403,7 @@ for j = 1:length(sel_speed)
     annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, ...
            'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' )
     hold off
-    saveas(gcf, ['../pic/CD_plot/','/CD_plot_#', num2str(j), '_flow_speed', num2str(sel_speed(j))], 'svg');
+    saveas(gcf, ['../pic/CD_plot/','/CD_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg');
     if ~isfolder('..')
         error('Corrupt or very very old file system, missing .. directory entry')
     elseif ~isfolder('../pic')
