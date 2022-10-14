@@ -211,10 +211,23 @@ for j = 1:length(sel_speed) % looping over flow speed to create fixed-speed plot
          end
     end
     
-    str_annotation = sprintf('Re = %.3e', Re);
-    annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, 'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' )
+    str_annotation = sprintf('Re = %.2e', Re);
+    annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, 'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' ) % printing Re on plots
     hold off
-    saveas(gcf, ['../pic/CL_over_CD_plot/', 'CL_over_CD_plot_#', num2str(j), 'flow_speed_0_', num2str(100 * sel_speed(j))], 'svg');
+    saveas(gcf, ['../pic/CL_over_CD_plot/', 'CL_over_CD_plot_#', num2str(j), 'flow_speed_0_', num2str(100 * sel_speed(j))], 'svg'); % saving plots in desired folder
+
+% checking and printing whether chosen path is accessible
+    
+    if ~isfolder('..')
+        error('Corrupt or very very old file system, missing .. directory entry')
+    elseif ~isfolder('../pic')
+        error('No folder ../data_analysis')
+    elseif ~isfolder('../pic/CL_plot')
+        error('No folder ../pic/CL_plot')
+    else
+        fprintf('folder path ../pic/CL_plot/ is okay \n')
+    end
+
 end
 
 
@@ -302,9 +315,12 @@ for j = 1:length(sel_speed) % looping over flow speed to create fixed-speed plot
     
     str_annotation = sprintf('Re = %.2e', Re);
     annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, ...
-           'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex')
+           'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex') % printing Re on plots
     hold off
-    saveas(gcf, ['../pic/CL_plot/', 'CL_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg');
+    saveas(gcf, ['../pic/CL_plot/', 'CL_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg'); % saving plots in desired folder
+    
+% checking and printing whether chosen path is accessible
+    
     if ~isfolder('..')
         error('Corrupt or very very old file system, missing .. directory entry')
     elseif ~isfolder('../pic')
@@ -398,9 +414,12 @@ for j = 1:length(sel_speed) % looping over flow speed to create fixed-speed plot
     
     str_annotation = sprintf('Re = %.2e', Re);
     annotation('textbox', [0.696 0.77 0.1 0.1], 'String', str_annotation, ...
-           'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' )
+           'BackgroundColor','white','LineStyle','-','Fontsize', 16, 'Interpreter','latex' ) % printing Re on plots
     hold off
-    saveas(gcf, ['../pic/CD_plot/','/CD_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg');
+    saveas(gcf, ['../pic/CD_plot/','/CD_plot_#', num2str(j), '_flow_speed_0_', num2str(100 * sel_speed(j))], 'svg'); % saving plots in desired folder
+
+% checking and printing whether chosen path is accessible
+
     if ~isfolder('..')
         error('Corrupt or very very old file system, missing .. directory entry')
     elseif ~isfolder('../pic')
