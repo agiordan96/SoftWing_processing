@@ -223,8 +223,8 @@ for j = 1:length(sel_speed) % looping over flow speed to create fixed-speed plot
         error('Corrupt or very very old file system, missing .. directory entry')
     elseif ~isfolder('../pic')
         error('No folder ../data_analysis')
-    elseif ~isfolder('../pic/CL_plot')
-        error('No folder ../pic/CL_plot')
+    elseif ~isfolder('../pic/CL_over_CD_plot')
+        error('No folder ../pic/CL_over_CD_plot')
     else
         fprintf('folder path ../pic/CL_plot/ is okay \n')
     end
