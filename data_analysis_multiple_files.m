@@ -344,8 +344,6 @@ end
 for j = 1:length(sel_speed) % looping over flow speed to create fixed-speed plots
 
     [status, msg, msgID] = mkdir('../pic/CD_plot/'); % saving-folder creation
-%     dyn_pressure = 0.5 * rho * sel_speed(j) ^ 2; % calculation of dynamic pressure
-%     div = dyn_pressure * S(j); % factor leading to aero coefficients
     Re = sel_speed(j) * chord / kin_viscosity; % Reynolds number
     
     clear k1 k2 k3 k4 k5
