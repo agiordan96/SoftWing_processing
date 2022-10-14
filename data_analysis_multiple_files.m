@@ -112,8 +112,7 @@ dz = z_t - z_s;
 
 d = [dx; dy; dz];
 
-S = 1; % m^2, wing's surface
-chord = 0.5; % m
+chord = 0.16; % m, measured visually from neutral configuration videos
 rho = 1000; % kg / m^3 density of water
 dyn_viscosity = 10^(-3); % Pa*s
 kin_viscosity = dyn_viscosity / rho;
